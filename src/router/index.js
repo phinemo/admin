@@ -24,41 +24,20 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
-    path: '/',
+    path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
-    hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
-  },
-
-  {
-    path: '/Dashboard',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Dashboard',
+    redirect: 'dashboard',
     meta: { title: 'Dashboard', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard' }
       }
     ]
   },
-
   {
     path: '/operator',
     component: Layout,
@@ -66,8 +45,28 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'Tour Operator',
+        component: () => import('@/views/form/operator'),
+        meta: { title: 'Tour Operator', icon: 'people' }
+      }
+    ]
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    meta: { title: 'Products', icon: 'shopping' },
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'List Products',
+        component: () => import('@/views/table/index'),
+        meta: { title: 'List Products', icon: 'shopping' }
+      },
+      {
+        path: 'tree',
+        name: 'Manage Products',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Tour Operator', icon: 'form' }
+        meta: { title: 'Manage', icon: 'tree' }
       }
     ]
   },
